@@ -1,7 +1,12 @@
 {% extends 'layout.twig' %}
 
+ 
+
 {% block body %}
-  <h1>{{message}}</h1>
-  <h2>{{error.status}}</h2>
-  <pre>{{error.stack}}</pre>
+<div class="container-error">
+    <h1 class="error-container">Oups ! Une erreur est survenue.</h1>
+    <h2  class="error-container">{{ error.status }} - {{ message }}</h2>
+    {# <pre >{{ error.stack }}</pre> #}
+    <a href="/">Retour à l'accueil</a>
+</div>
 {% endblock %}

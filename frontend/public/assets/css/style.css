@@ -3,17 +3,21 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #040404;
+  background-color: #00080e;
   color: #fff;
   position: relative;
   background: transparent;
+  overflow: auto; /* Enable scrolling */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
 
 body::before {
   content: "";
   position: fixed;
-  background: #040404 url("../img/bg.jpg") top right no-repeat;
+  background: #00080e url("../img/main.jpg") top right no-repeat;
   background-size: cover;
+  filter: contrast(195%);
   left: 0;
   right: 0;
   top: 0;
@@ -30,6 +34,12 @@ body::before {
 a {
   color: #18d26e;
   text-decoration: none;
+}
+
+.container {
+  background-color: #00080e;
+  padding: 3em;
+  border-radius: 8px;
 }
 
 .special {
@@ -150,7 +160,7 @@ h6 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #000000d9;
+    background-color: #00080ec5;
     padding: 3em 1em;
     border-radius: 1em;
     margin: 1em;
@@ -165,7 +175,7 @@ h6 {
   left: 0;
   top: 0;
   right: 0;
-  background: #131316e6;
+  background: #00080ec5;
 }
 
 #header.header-top .social-links,
@@ -309,7 +319,7 @@ h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background: #131316e6;
+  background: rgba(19, 19, 22, 0.774);
   transition: 0.3s;
   z-index: 999;
   margin-top: 0;
@@ -370,7 +380,7 @@ section.section-show {
 }
 
 section .container {
-  background: #131316da;
+  background: #00060bc7;
   padding: 30px;
 }
 
@@ -1216,4 +1226,62 @@ section .container {
 [class^="devicon-"],
 [class*=" devicon-"] {
   margin: 0px 0.5em 0 0;
+}
+
+::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+#background-video {
+  position: sticky;
+  top: 0;
+
+}
+
+
+ 
+.error-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+.error-container h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+.error-container pre {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    color: #fff  !important;
+    overflow-x: auto;
+}
+.error-container a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4ceb95;
+    color: #fff ;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.error-container a:hover {
+    background-color: #4ceb95;
+}
+.container-error{
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #00080e;
+  padding: 3em;
+  border-radius: 8px;
+  margin: 4em ;
+  color: white;
+}
+
+em {
+  color: #f7f7f7 !important;
 }
