@@ -7,10 +7,9 @@ const createDemande = require('../services/demande');
 
 router.use(cors());
 
-router.get('/', async function (req, res, next) {
-
-  const assetPath = process.env.ASSETS_URL
-  const startPath = process.env.API_URL
+router.get('/', async (req, res, next) => {
+  const assetPath = process.env.ASSETS_URL;
+  const startPath = process.env.API_URL;
 
   const endpoints = [
     'acceuil',
@@ -29,57 +28,44 @@ router.get('/', async function (req, res, next) {
 
   try {
     const fetchPromises = endpoints.map(endpoint =>
-      axios.get(`${process.env.API_URL}${endpoint}`).then(response => response.data)
+      axios.get(`${startPath}${endpoint}`).then(response => response.data)
     );
 
-    const [
-      acceuil,
-      centres_intrets,
-      etudes,
-      experiences_professionnels,
-      frameworks,
-      languages_inforamtiques,
-      projects,
-      reseaux,
-      resumee,
-      services,
-      statistiques,
-      temoignages
-    ] = await Promise.all(fetchPromises);
+    const results = await Promise.all(fetchPromises);
 
-    res.render('index', {
-      acceuil,
-      centres_intrets,
-      etudes,
-      experiences_professionnels,
-      frameworks,
-      languages_inforamtiques,
-      projects,
-      reseaux,
-      resumee,
-      services,
-      statistiques,
-      temoignages,
+    const data = {
+      acceuil: results[0],
+      centres_intrets: results[1],
+      etudes: results[2],
+      experiences_professionnels: results[3],
+      frameworks: results[4],
+      languages_inforamtiques: results[5],
+      projects: results[6],
+      reseaux: results[7],
+      resumee: results[8],
+      services: results[9],
+      statistiques: results[10],
+      temoignages: results[11],
       assetPath,
       startPath
-    });
+    };
+
+    res.render('index', data);
   } catch (error) {
     console.error(error);
     res.status(500).send('Erreur lors de la récupération des données depuis l\'API.');
   }
 });
 
-router.get('/details/:id', async function (req, res, next) {
+router.get('/details/:id', async (req, res, next) => {
   const id = req.params.id;
   const assetPath = process.env.ASSETS_URL;
   const startPath = process.env.API_URL;
 
   try {
-    // Fetch details for the specified project ID
-    const response = await axios.get(`${process.env.API_URL}projects/${id}`);
+    const response = await axios.get(`${startPath}projects/${id}`);
     const details = response.data;
 
-    // Render the 'details' view with the retrieved data
     res.render('details', { details, assetPath, startPath });
   } catch (error) {
     console.error(error);
@@ -87,18 +73,15 @@ router.get('/details/:id', async function (req, res, next) {
   }
 });
 
-
-
 router.post('/', async (req, res, next) => {
   const { nom, email, sujet, message } = req.body;
   try {
     await createDemande({ nom, email, sujet, message });
-    res.redirect("/");
+    res.redirect('/');
   } catch (error) {
-    // Handle errors if any
-    next(error); // Pass the error to the error handling middleware
+    console.error(error);
+    next(error);
   }
 });
-
 
 module.exports = router;
