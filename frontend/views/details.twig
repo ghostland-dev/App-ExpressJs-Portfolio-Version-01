@@ -1,0 +1,51 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <main id="main">
+    <!-- ======= Portfolio Details ======= -->
+    <div id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h2 class="portfolio-title">Détails du projet GitHub</h2>
+
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide">
+                  <img src="{{ assetPath }}{{ details.data.screen }}" alt="" />
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 portfolio-info">
+            <h3>Informations sur le projet</h3>
+            <ul>
+              <li>
+                <strong>Catégorie</strong>: {{ details.data.categorie }}
+              </li>
+              <li>
+                <strong>Auteur</strong>: MOUYAHADA ISMAIL
+              </li>
+              <li>
+                <strong>Date du projet</strong>: {{ details.data.date_debut }}
+              </li>
+              <li>
+                <strong>URL du projet</strong>: <a href="{{ details.data.link }}">{{ details.data.link }}</a>
+              </li>
+            </ul>
+
+            <p>{{ details.data.details }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Portfolio Details -->
+  </main>
+  <!-- End #main -->
+
+  <div class="credits">
+    Designed by <a href="https://ismail-mouyahada.com/">ISMAIL MOUYAHADA</a>
+  </div>
+{% endblock %}
