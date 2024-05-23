@@ -269,7 +269,7 @@
 					{% for item in etudes.data %}
 						<div class="resume-item">
 							<h4>{{ item.titre }}</h4>
-							<h5>{{ item.peroide }}</h5>
+							<h5 class="text-white">{{ item.peroide }}</h5>
 							<p>
 								<text>{{ item.site }}</text>
 							</p>
@@ -285,7 +285,7 @@
 					{% for item in experiences_professionnels.data %}
 						<div class="resume-item">
 							<h4>{{ item.titulaire }}</h4>
-							<h5>{{ item.peroide }}</h5>
+							<h5 class="text-white">{{ item.peroide }}</h5>
 							<p>
 								<text>{{ item.site }}</text>
 							</p>
@@ -421,14 +421,14 @@
 			<form action="/" method="post" role="form" class="php-email-form mt-4">
 				<div class="row">
 					<div class="col-md-6 form-group">
-						<input type="text" name="nom" class="form-control" id="nom" placeholder="Votre Nom" required/>
+						<input type="text" name="nom" class="form-control" id="nom" placeholder="Votre Nom" pattern="^[A-Za-zÀ-ÿ '-]{2,50}$" title="Le nom doit contenir uniquement des lettres, des espaces, des apostrophes ou des tirets (2-50 caractères)" required/>
 					</div>
 					<div class="col-md-6 form-group mt-3 mt-md-0">
-						<input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" required/>
+						<input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Veuillez entrer une adresse email valide" required/>
 					</div>
 				</div>
 				<div class="form-group mt-3">
-					<input type="text" class="form-control" name="sujet" id="sujet" placeholder="Sujet" required/>
+					<input type="text" class="form-control" name="sujet" id="sujet" placeholder="Sujet" pattern="^[A-Za-zÀ-ÿ0-9 '-]{2,100}$" title="Le sujet doit contenir uniquement des lettres, des chiffres, des espaces, des apostrophes ou des tirets (2-100 caractères)" required/>
 				</div>
 				<div class="form-group mt-3">
 					<textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
@@ -442,24 +442,26 @@
 					<button type="submit">Envoyer le Message</button>
 				</div>
 			</form>
+
 		</div>
 	</section>
 
 	<section id="video" class="about content">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.1/dist/css/uikit.min.css" />
-	 <div class="container">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.1/dist/css/uikit.min.css"/>
+		<div class="container">
 			<div class="section-title">
-				<h2>Introduction à la chaîne </h2>
-			 
+				<h2>Introduction à la chaîne
+				</h2>
+
 			</div>
 
 			<div class="row mt-2">
-			<video src="/assets/media/intro.mp4" width="1920" height="1080" controls playsinline autoplay="false"   uk-video></video>
+				<video src="/assets/media/intro.mp4" width="1920" height="1080" controls playsinline autoplay="false" uk-video></video>
 			</div>
 
-		 
+
 		</div>
-		 
+
 	</section>
 
 

@@ -7,6 +7,9 @@ const createDemande = require('../services/demande');
 
 router.use(cors());
 
+var { body, validationResult } = require('express-validator');
+var sanitizeHtml = require('sanitize-html');
+
 router.get('/', async (req, res, next) => {
   const assetPath = process.env.ASSETS_URL;
   const startPath = process.env.API_URL;
@@ -73,15 +76,29 @@ router.get('/details/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
-  const { nom, email, sujet, message } = req.body;
-  try {
-    await createDemande({ nom, email, sujet, message });
-    res.redirect('/');
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
-});
+
+
+router.post('/',
+    body('nom').trim().escape(),
+    body('email').isEmail().normalizeEmail(),
+    body('sujet').trim().escape(),
+    body('message').customSanitizer(value => sanitizeHtml(value, {
+        allowedTags: [],
+        allowedAttributes: {}
+    })),
+    async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        req.flash('error_messages', 'Validation errors occurred. Please check the form.');
+        return res.redirect('/');
+      }
+      const { nom, email, sujet, message } = req.body; // Wrap the destructuring assignment in parentheses
+      // Process the sanitized data
+      await createDemande({ nom, email, sujet, message });
+      req.flash('success_messages', 'Form submission successful');
+      res.redirect('/');
+    }
+);
+
 
 module.exports = router;
