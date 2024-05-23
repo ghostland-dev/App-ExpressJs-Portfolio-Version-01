@@ -354,12 +354,13 @@
 								<h4>{{ item.titre_projet }}</h4>
 								<p>{{ item.description }}</p>
 								<div class="portfolio-links">
-									<a href="{{ assetPath }}{{ item.screen }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ item.nom_projet }}">
+									<a href="{{ item.link }}"  title="{{ item.nom_projet }}">
 										<i class="bx bx-plus"></i>
 									</a>
-									<a href="/details/projet/{{ item.id }}" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details">
+									<a href="/details/{{ item.id }}"   title="Portfolio Details">
 										<i class="bx bx-link"></i>
 									</a>
+									
 								</div>
 							</div>
 						</div>
