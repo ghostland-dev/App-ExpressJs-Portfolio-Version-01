@@ -1298,3 +1298,8 @@ em {
 .project-screen {
   width: inherit;
 }
+
+body {
+ 
+  cursor: url('/Lime.png'), default; 
+}
