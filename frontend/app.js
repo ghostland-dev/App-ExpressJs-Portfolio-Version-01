@@ -1,22 +1,36 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
-var flash = require('connect-flash');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const flash = require('connect-flash');
 const toastr = require('express-toastr');
 const apicache = require('apicache');
+const i18n = require('i18n');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
-let cache = apicache.middleware;
+const app = express();
+const cache = apicache.middleware;
 
-// view engine setup
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
+
+// Internationalization setup
+i18n.configure({
+  locales: ['en', 'fr'], // Supported languages
+  directory: path.join(__dirname, 'locales'), // Path to the locales directory
+  defaultLocale: 'en', // Default language
+  queryParameter: 'lang', // Query parameter to switch language
+  autoReload: true, // Auto reload translation files
+  updateFiles: false // Disable writing new locale information
+});
+
+app.use(i18n.init);
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,34 +40,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'secret-key', resave: false, saveUninitialized: true }));
 app.use(flash());
 app.use(toastr());
+
 app.use((req, res, next) => {
-    res.locals.success_messages = req.flash('success_messages');
-    res.locals.error_messages = req.flash('error_messages');
-    next();
+  let locale = req.query.lang || req.cookies.lang || 'en';
+  i18n.setLocale(locale);
+  next();
+});
+// Toastr messages setup
+app.use((req, res, next) => {
+  res.locals.success_messages = req.flash('success_messages');
+  res.locals.error_messages = req.flash('error_messages');
+  next();
 });
 
-
-// Toastr setup
-app.use(session({ secret: process.env.SECRET_KEY, saveUninitialized: true, resave: true }));
-app.use(toastr());
+ 
 
 // Cache middleware setup (apply globally)
-// app.use(cache('5 minutes'));  // Caches all routes for 5 minutes by default
+// Uncomment the line below to cache all routes for 5 minutes by default
+// app.use(cache('5 minutes'));
 
+// Define your routes
 app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // Render the error page
   res.status(err.status || 500);
   res.render('error');
 });

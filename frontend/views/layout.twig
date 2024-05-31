@@ -15,7 +15,7 @@
 		<link rel="icon" href="/assets/img/favicon.ico"/>
 		<link
 		rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"/>
- 
+
 		<!-- Google Fonts -->
 		<link
 		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
@@ -37,60 +37,61 @@
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website"/>
-		<meta property="og:url" content="https://www.example.com/"/>
+		<meta property="og:url" content="https://www.isma-mouyahada.com/"/>
 		<meta property="og:title" content="Ismail MouYahada - Accueil"/>
 		<meta property="og:description" content="Portfolio personnel d'Ismail MouYahada, présentant ses compétences en développement informatique, DevOps, conception d'applications web et mobile, et bien plus encore."/>
 		<meta
-		property="og:image" content="https://www.example.com/assets/img/og-image.jpg"/>
+		property="og:image" content="https://www.isma-mouyahada.com/assets/img/og-image.jpg"/>
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:url" content="https://www.example.com/"/>
+		<meta property="twitter:url" content="https://www.isma-mouyahada.com/"/>
 		<meta property="twitter:title" content="Ismail MouYahada - Accueil"/>
 		<meta property="twitter:description" content="Portfolio personnel d'Ismail MouYahada, présentant ses compétences en développement informatique, DevOps, conception d'applications web et mobile, et bien plus encore."/>
 		<meta
-		property="twitter:image" content="https://www.example.com/assets/img/twitter-image.jpg"/>
+		property="twitter:image" content="https://www.isma-mouyahada.com/assets/img/twitter-image.jpg"/>
 
 		<!-- LinkedIn -->
 		<meta property="linkedin:title" content="Ismail MouYahada - Accueil"/>
 		<meta property="linkedin:description" content="Portfolio personnel d'Ismail MouYahada, présentant ses compétences en développement informatique, DevOps, conception d'applications web et mobile, et bien plus encore."/>
-		<meta property="linkedin:image" content="https://www.example.com/assets/img/linkedin-image.jpg"/>
+		<meta property="linkedin:image" content="https://www.isma-mouyahada.com/assets/img/linkedin-image.jpg"/>
 		<meta
-		property="linkedin:url" content="https://www.example.com/"/>
+		property="linkedin:url" content="https://www.isma-mouyahada.com/"/>
 
 		<!-- WhatsApp -->
 		<meta property="whatsapp:title" content="Ismail MouYahada - Accueil"/>
 		<meta property="whatsapp:description" content="Portfolio personnel d'Ismail MouYahada, présentant ses compétences en développement informatique, DevOps, conception d'applications web et mobile, et bien plus encore."/>
-		<meta property="whatsapp:image" content="https://www.example.com/assets/img/whatsapp-image.jpg"/>
+		<meta property="whatsapp:image" content="https://www.isma-mouyahada.com/assets/img/whatsapp-image.jpg"/>
 
-	<!-- Service Worker -->
-		 <script>
-		        if ('serviceWorker' in navigator) {
-		            navigator.serviceWorker.register('/assets/js/service-worker.js');
-		        }
-		    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-        <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="d61f40b5-1b8f-4875-9d55-fb5411b2f03f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="d61f40b5-1b8f-4875-9d55-fb5411b2f03f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+	
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+<script src="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.js"></script>
+<script>
+    var cursor = new MouseFollower();
+</script>
 	</head>
-	<body class="app">
+	<body data-cursor-show data-cursor-text="Surprise!">
 
-	   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        {% if success_messages %}
-            {% for message in success_messages %}
-                toastr.success('{{ message }}');
-            {% endfor %}
-        {% endif %}
-        {% if error_messages %}
-            {% for message in error_messages %}
-                toastr.error('{{ message }}');
-            {% endfor %}
-        {% endif %}
-    </script>
-		{% block body %}{% endblock %}
+
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		 <script>
+				        {% if success_messages %}
+				            {% for message in success_messages %}
+				                toastr.success('{{ message }}');
+				            {% endfor %}
+				        {% endif %}
+				        {% if error_messages %}
+				            {% for message in error_messages %}
+				                toastr.error('{{ message }}');
+				            {% endfor %}
+				        {% endif %}
+				    </script>{% block body %}
+	{% endblock %}
 
 		<!-- UIkit JS -->
 	 <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.1/dist/js/uikit.min.js"></script>
@@ -107,7 +108,7 @@
 
 		<!-- Template Main JS File -->
 		 <script src="/assets/js/main.js"></script>
-	 
-	
+
+
 	</body>
 </html>
