@@ -6,9 +6,8 @@ Ce projet est une démonstration de mon portfolio personnel. Il présente mes co
 
 ## Captures d'écran
 
-![Capture d'écran 1](assets/img/portfolio/github-project-1.jpg)
-![Capture d'écran 2](assets/img/portfolio/github-project-2.jpg)
-![Capture d'écran 3](assets/img/portfolio/github-project-3.jpg)
+ 
+![téléchargement](https://github.com/Ismail-Mouyahada/master-express-protfolio-app/assets/66369128/6d1020d5-5b39-4091-904a-3a5c9669e8bc)
 
 ## Fonctionnalités
 
